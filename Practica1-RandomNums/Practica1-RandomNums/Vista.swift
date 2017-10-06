@@ -26,20 +26,25 @@ class ViewController: UIViewController
             correctButtonIndex += 1;
         }
         if(correctButtonIndex == 5) {
-            
+            level += 1;
+            time = 30 - 3 * level;
         }
     }
     
     var buttons : [UIButton] = [];
     var numbers : [Int] = [];
     var correctButtonIndex : Int = 0;
+    var timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
+    var time : Int = 30;
+    var level : Int = 0;
     
     override func viewDidLoad() // Init
     {
         buttons = [btn1, btn2, btn3, btn4, btn5, btn6];
         super.viewDidLoad()
-        generateNumbers()
+        generateNumbers();
         numbers.sort();
+        labelTime.text = String(time);
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +60,11 @@ class ViewController: UIViewController
             numbers.append(Int(arc4random_uniform(201)) - 100);
             buttons[i].setTitle(String(numbers[i]), for: .normal);
         }
+    }
+    
+    func tick() {
+        time -= 1;
+        labelTime.text = String(time);
     }
 }
 
