@@ -32,7 +32,7 @@ class ViewController: UIViewController
             points += 1;
             labelPoints.text = String(points)
         }
-        if(correctButtonIndex == 6) {
+        if(correctButtonIndex == numbers.count) {
             timer.invalidate();
             if(level < 9) {
                 level += 1;
@@ -70,7 +70,7 @@ class ViewController: UIViewController
         if( !numbers.isEmpty) {
             numbers.removeAll();
         }
-        for i in 0...5 {
+        for i in 0...(buttons.count - 1) {
             numbers.append(Int(arc4random_uniform(201)) - 100);
             buttons[i].setTitle(String(numbers[i]), for: .normal);
             buttons[i].isEnabled = true;
@@ -86,7 +86,7 @@ class ViewController: UIViewController
     
     func loseCondition() {
         timer.invalidate();
-        for i in 0...5 {
+        for i in 0...(buttons.count - 1) {
             buttons[i].isEnabled = false;
             buttons[i].isHidden = true;
         }
