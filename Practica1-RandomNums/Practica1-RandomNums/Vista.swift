@@ -35,6 +35,9 @@ class ViewController: UIViewController
             time -= 1;
             labelTime.text = String(time);
         }
+        if(time <= 0) {
+            loseCondition();
+        }
         if(correctButtonIndex == numbers.count) {
             timer.invalidate();
             if(level < 9) {
@@ -43,7 +46,8 @@ class ViewController: UIViewController
             generateLevel();
         }
     }
-    @IBAction func playAgainBtn(_ sender: UIButton) {
+    @IBAction func playAgainBtn(_ sender: UIButton)
+    {
         level = 0;
         points = 0;
         labelPoints.text = String(points);
@@ -87,7 +91,8 @@ class ViewController: UIViewController
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(tick), userInfo: nil, repeats: true);
     }
     
-    func loseCondition() {
+    func loseCondition()
+    {
         timer.invalidate();
         for i in 0...(buttons.count - 1) {
             buttons[i].isEnabled = false;
@@ -98,17 +103,13 @@ class ViewController: UIViewController
         btnPlayAgain.isEnabled = true;
     }
     
-    func tick() {
+    func tick()
+    {
         time -= 1;
-        if(time == 0) {
+        if(time <= 0) {
             loseCondition();
         }
         labelTime.text = String(time);
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
