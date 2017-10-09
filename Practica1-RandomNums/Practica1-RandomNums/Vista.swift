@@ -31,6 +31,9 @@ class ViewController: UIViewController
             correctButtonIndex += 1;
             points += 1;
             labelPoints.text = String(points)
+        } else { // Colleja for missing
+            time -= 1;
+            labelTime.text = String(time);
         }
         if(correctButtonIndex == numbers.count) {
             timer.invalidate();
@@ -90,7 +93,7 @@ class ViewController: UIViewController
             buttons[i].isEnabled = false;
             buttons[i].isHidden = true;
         }
-        labelMain.text = "You lose!!!";
+        labelMain.text = "Game Over!";
         btnPlayAgain.isHidden = false;
         btnPlayAgain.isEnabled = true;
     }
