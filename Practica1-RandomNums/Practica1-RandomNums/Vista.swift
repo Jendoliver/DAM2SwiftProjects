@@ -31,9 +31,11 @@ class ViewController: UIViewController
             correctButtonIndex += 1;
             points += 1;
             labelPoints.text = String(points)
+            labelMain.text = "Nice!";
         } else { // Colleja for missing
             time -= 1;
             labelTime.text = String(time);
+            labelMain.text = "Oops!";
         }
         if(time <= 0) {
             loseCondition();
@@ -53,7 +55,6 @@ class ViewController: UIViewController
         labelPoints.text = String(points);
         btnPlayAgain.isHidden = true;
         btnPlayAgain.isEnabled = false;
-        labelMain.text = "Sort the numbers fam!";
         generateLevel();
     }
     
@@ -74,6 +75,7 @@ class ViewController: UIViewController
     
     func generateLevel()
     {
+        labelMain.text = "Sort the numbers fam!";
         if( !numbers.isEmpty) {
             numbers.removeAll();
         }
